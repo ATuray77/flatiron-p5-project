@@ -12,3 +12,5 @@ class Artist(db.Model, SerializerMixin):
     style = db.Column(db.String)
     lyrics = db.Column(db.String)
 
+class Songs(db.Model, SerializerMixin):
+    __tablename__ = 'songs'
