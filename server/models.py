@@ -19,7 +19,10 @@ class Song(db.Model, SerializerMixin):
     title = db.Column(db.String)
     style = db.Column(db.String)
     lyrics = db.Column(db.String)
-    artist_id = db.Column(db.Integer, db.Foreignkey('artists.id'))
+    artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
+
+    def __repr__(self):
+        return f"\n<Song id={self.id} title={self.title} style={self.style} lyrics={self.lyrics}>"
 
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -30,5 +33,8 @@ class User(db.Model, SerializerMixin):
     email = db.Column(db.String, unique = True, nullable = False)
     username = db.Column(db.String)
     _password_hash = db.Column(db.String)
+
+    def __repr__(self):
+        return f"\n<User id={self.id} first_name={self.first_namename} last_name={self.last_name}email={self.email} username={self.username}>"
 
    
