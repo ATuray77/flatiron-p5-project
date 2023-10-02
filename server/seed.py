@@ -9,6 +9,7 @@ from faker import Faker
 # Local imports
 from app import app
 from models import db, Artist, Song, User
+import random
 
 if __name__ == '__main__':
     fake = Faker()
@@ -41,5 +42,6 @@ song_style = ["praise", "worship"]
 
 for n in range(20):
     song = Song(
-        title = fake.sentence(nb_words=5, variable_nb_words=True)
+        title = fake.sentence(nb_words=5, variable_nb_words=True),
+        style = random.choice(song_style)
     )
