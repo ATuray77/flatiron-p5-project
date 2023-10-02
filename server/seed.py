@@ -43,5 +43,6 @@ song_style = ["praise", "worship"]
 for n in range(20):
     song = Song(
         title = fake.sentence(nb_words=5, variable_nb_words=True),
-        style = random.choice(song_style)
+        style = random.choice(song_style),
+        lyrics = fake.paragraph(nb_sentences=10, variable_nb_sentences=True)
     )
