@@ -25,19 +25,19 @@ if __name__ == '__main__':
 
 print("Creating Artists...")
     # name
+artist_list = []
 for i in range(10):
     artist_name = fake.name()
-    name = Artist(artist_name)
+    artist = Artist(artist_name)
 
-db.session.add(name)
+db.session.add(artist)
 db.commit()
+artist_list.append(artist)
 
 
     
 print ("Creating songs...")
-    # title = db.Column(db.String)
-    # style = db.Column(db.String)
-    # lyrics = db.Column(db.String)
+   
 song_style = ["praise", "worship"]
 
 for n in range(20):
@@ -46,3 +46,10 @@ for n in range(20):
         style = random.choice(song_style),
         lyrics = fake.paragraph(nb_sentences=10, variable_nb_sentences=True)
     )
+
+
+
+    artist.songs.append(artist_list)
+
+    db.session.add(song)
+    db.commit()
