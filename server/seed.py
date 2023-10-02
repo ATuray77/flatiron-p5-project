@@ -19,6 +19,7 @@ if __name__ == '__main__':
         # Seed code goes here!
     Artist.query.delete()
     Song.query.delete()
+    User.query.delete()
 
 
 print("Creating Users...")
