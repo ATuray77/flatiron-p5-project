@@ -12,6 +12,9 @@ class Artist(db.Model, SerializerMixin):
     name = db.Column(db.String)
     songs = db.relationship('Song', backref='artist')
 
+    def __repr__(self):
+        return f"\n<Artist id={self.id} name={self.name}>"
+
 class Song(db.Model, SerializerMixin):
     __tablename__ = 'songs'
 
