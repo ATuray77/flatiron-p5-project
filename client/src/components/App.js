@@ -2,6 +2,7 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css"
 import NavBar from './NavBar';
 import Home from "./Home";
+import SignUp from "./SignUp";
 import SongsPage from './SongsPage';
 import SongForm from './SongForm';
 import React, { useEffect, useState } from "react";
