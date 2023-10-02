@@ -6,6 +6,7 @@ from config import db
 # Models go here!
 class Artist(db.Model, SerializerMixin):
     __tablename__ = 'artists'
+    serialize_rules = ("-songs.artist",)  # added to deal with serialization
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
@@ -24,5 +25,10 @@ class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.Integer)
+    last_name = db.Column(db.Integer)
+    email = db.Column(db.String, unique = True, nullable = False)
     username = db.Column(db.String)
     _password_hash = db.Column(db.String)
+
+   
