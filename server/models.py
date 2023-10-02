@@ -21,7 +21,7 @@ class Song(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     style = db.Column(db.String)
-    lyrics = db.Column(db.String)
+    lyrics = db.Column(db.Text)
     artist_id = db.Column(db.Integer, db.ForeignKey('artists.id'))
 
     def __repr__(self):

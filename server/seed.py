@@ -39,7 +39,7 @@ if __name__ == '__main__':
     
         song_style = ["praise", "worship"]
         songs_list = []
-        for n in range(20):
+        for n in range(15):
             song = Song(
                 title = fake.sentence(nb_words=5, variable_nb_words=True),
                 style = random.choice(song_style),
@@ -47,9 +47,9 @@ if __name__ == '__main__':
             )
 
 
-        artist = random.choice(artist_list)
-        artist.songs.append(song)
-        songs_list.append(song)
+            artist = random.choice(artist_list)
+            artist.songs.append(song)
+            songs_list.append(song)
 
         db.session.add_all(songs_list)
         db.session.commit()
