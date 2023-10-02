@@ -39,7 +39,7 @@ artist_list.append(artist)
 print ("Creating songs...")
    
 song_style = ["praise", "worship"]
-
+songs_list = []
 for n in range(20):
     song = Song(
         title = fake.sentence(nb_words=5, variable_nb_words=True),
@@ -48,8 +48,9 @@ for n in range(20):
     )
 
 
+    artist = random.choice(artist_list)
+    artist.songs.append(song)
+    songs_list.append(song)
 
-    artist.songs.append(artist_list)
-
-    db.session.add(song)
+    db.session.add_all(songs_list)
     db.commit()
