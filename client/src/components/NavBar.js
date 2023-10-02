@@ -16,7 +16,7 @@ const linkStyles = {
 function NavBar() {
   return (
     <div>
-      <NavLink to="/" exact style={linkStyles} activeStyle={{ background: "DarkOliveGreen" }}>
+      <NavLink to="/signUp" exact style={linkStyles} activeStyle={{ background: "DarkOliveGreen" }}>
         SignUp
       </NavLink>
       <NavLink to="/" exact style={linkStyles} activeStyle={{ background: "DarkOliveGreen" }}>
