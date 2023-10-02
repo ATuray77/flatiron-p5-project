@@ -22,10 +22,24 @@ if __name__ == '__main__':
     User.query.delete()
 
 
-print("Creating Users...")
+print("Creating Artists...")
+    # name
+for i in range(10):
+    artist_name = fake.name()
+    name = Artist(artist_name)
+
+db.session.add(name)
+db.commit()
 
 
+    
+print ("Creating songs...")
     # title = db.Column(db.String)
     # style = db.Column(db.String)
     # lyrics = db.Column(db.String)
-print ("Creating songs...")
+song_style = ["praise", "worship"]
+
+for n in range(20):
+    song = Song(
+        title = fake.sentence(nb_words=5, variable_nb_words=True)
+    )
