@@ -13,6 +13,27 @@ from models import Artist, Song, User
 
 
 # Views go here!
+class Signup(Resource):
+
+    def post(self):
+        
+        username = request.get_json()['username']
+        password = request.get_json()['password']
+
+        if username and password:
+            
+            new_user = User(username=username)
+            new_user.password_hash = password
+            db.session.add(new_user)
+            db.session.commit()
+
+            session['user_id'] = new_user.id
+            
+            return new_user.to_dict(), 201
+
+        return {'error': '422 Unprocessable Entity'}, 422
+
+
 class CheckSession(Resource):
 
     def get(self):
@@ -34,6 +55,7 @@ def index():
 
 
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
+api.add_resource(Signup, '/signup', endpoint='signup')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
