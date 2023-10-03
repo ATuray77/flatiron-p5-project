@@ -32,6 +32,9 @@ def index():
     return '<h1>Project Server</h1>'
 
 
+
+api.add_resource(CheckSession, '/check_session', endpoint='check_session')
+
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
 
