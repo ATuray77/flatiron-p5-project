@@ -3,7 +3,7 @@ import "./App.css";
 
 
 
-const Home = ({ id, onDeleteSong }) => {
+const UserHome = ({ id, onDeleteSong }) => {
   const [songs, setSongs] = useState([]);
 
   //const { id } = song
@@ -31,7 +31,7 @@ const Home = ({ id, onDeleteSong }) => {
 
   return (
     <>
-      <h1>Home Page</h1>
+      <h1>My Home Page</h1>
       {songs.map((song) => (
         <li key={song.id}>
           {song.Title}
@@ -44,4 +44,4 @@ const Home = ({ id, onDeleteSong }) => {
   );
 };
 
-export default Home;
+export default UserHome;
