@@ -75,7 +75,7 @@ class CheckSession(Resource):
 class Login(Resource):
 
     def post(self):
-
+        
         username = request.get_json()['username']
         password = request.get_json()['password']
 
@@ -148,24 +148,26 @@ def songs():
 
 
 # CREATING USER CLASS THIS MAY BE MOVED LATER
-class Users(Resource):
-    def post(self):
-        data = request.get_json()
-        user = User(
-            first_name=data["first_name"],
-            last_name=data["last_name"],
-            email=data["email"],
-            username=data["username"]
-        )
-        db.session.add(user)  # adding new user to db
-        db.session.commit()
+# class Users(Resource):
+#     def post(self):
+#         data = request.get_json()
+#         user = User(
+#             first_name=data["first_name"],
+#             last_name=data["last_name"],
+#             email=data["email"],
+#             username=data["username"],
+#             password=data['password'],
+#         )
+#         user.password_hash = password
+#         db.session.add(user)  # adding new user to db
+#         db.session.commit()
 
-        session["user_id"] = user.id  # create session
+#         session["user_id"] = user.id  # create session
 
-        return user.to_dict(), 201
+#         return user.to_dict(), 201
 # END OF CREATING USER CLASS THIS MAY BE MOVED LATER
 
-api.add_resource(Users, '/signup')
+#api.add_resource(Users, '/signup')
 api.add_resource(ClearSession, '/clear', endpoint='clear')
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Signup, '/signup', endpoint='signup')
