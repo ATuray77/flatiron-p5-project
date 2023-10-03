@@ -1,7 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import "./App.css"
 import NavBar from './NavBar';
-import Home from "./UserHome";
+import UserHome from "./UserHome";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import SongsPage from './SongsPage';
@@ -56,26 +56,30 @@ import React, { useEffect, useState } from "react";
       {user ? (
       <Switch>
         <Route path="/">
-          <Home user={user}/>
+          <UserHome user={user}/>
           <SongsPage songs={songs} setSongs={setSongs} />
         </Route>
         <Route path="/form">
           <SongForm onFormSubmitted={handleOnFormSubmitted} />
         </Route>
         <Route exact path="/">
-          <Home songs={songs} id={songs.id} onDeleteSong={handleDeleteSong} />
+          <UserHome songs={songs} id={songs.id} onDeleteSong={handleDeleteSong} />
         </Route>
       </Switch>
       ) : (
       <Switch>
-      <Route path="/signup">
+        <Route path="/signup">
           <SignUp setUser={setUser} />
         </Route>
 
         <Route path="/login">
           <Login setUser={setUser}/>
         </Route>
-        </Switch>
+
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
       )}
       
     </div>
