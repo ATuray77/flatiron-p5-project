@@ -132,6 +132,11 @@ def songs():
     ) 
 
 
+# CREATING USER CLASS THIS MAY BE MOVED LATER
+class User(Resource):
+    data = request.get_json()
+# END OF CREATING USER CLASS THIS MAY BE MOVED LATER
+
 
 api.add_resource(ClearSession, '/clear', endpoint='clear')
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
