@@ -73,6 +73,13 @@ class Login(Resource):
 
         return {'error': '401 Unauthorized'}, 401
 
+class Logout(Resource):
+    def delete(self):
+    
+        session['user_id'] = None
+        
+        return {}, 204
+
 
 
 @app.route('/')
@@ -83,6 +90,8 @@ def index():
 api.add_resource(ClearSession, '/clear', endpoint='clear')
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Signup, '/signup', endpoint='signup')
+api.add_resource(Login, '/login', endpoint='login')
+api.add_resource(Logout, '/logout', endpoint='logout')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
