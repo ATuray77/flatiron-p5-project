@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Standard library imports
-
+from sqlalchemy.exc import IntegrityError
 # Remote library imports
 from flask import request, session
 from flask_restful import Resource
@@ -80,6 +80,36 @@ class Logout(Resource):
         
         return {}, 204
 
+
+# CRUD ROUTES
+class SongsIndex(Resource):
+    def get(self):
+        if not session.get('user_id'):
+            return ({"error":"unauthorized"}, 401)
+        else:
+            user_id = session['user_id']
+            songs = [song.to_dict() for song in Song.query.filter(Song.user_id == user_id).all()]
+            return songs, 200
+    
+    def post(self):
+        json = request.get_json()
+        if not session.get('user_id'):
+            return ({"error":"unauthorized"}, 401)
+        else:
+            try:
+                new_song = Song(
+                    title = json['title'],
+                    style = json['style'],
+                    lyrics = json['lyrics'],
+                    user_id = session['user_id'],
+                    )
+            
+                db.session.add(new_song)
+                db.session.commit()
+                return new_song.to_dict(), 201
+            except IntegrityError:
+                db.session.rollback()
+                return ({"error":"unprocessable entity"}, 422)
 
 
 @app.route('/')
