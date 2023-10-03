@@ -134,7 +134,15 @@ def songs():
 
 # CREATING USER CLASS THIS MAY BE MOVED LATER
 class User(Resource):
-    data = request.get_json()
+    def post(self):
+        data = request.get_json()
+        user = User(
+            first_name=data["first_name"],
+            last_name=data["last_name"],
+            email=data["email"],
+            username=data["username"]
+
+        )
 # END OF CREATING USER CLASS THIS MAY BE MOVED LATER
 
 

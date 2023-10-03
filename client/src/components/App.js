@@ -41,14 +41,14 @@ import React, { useEffect, useState } from "react";
 
 // THIS FUNCTION DID THE ORIGINAL FETCH. MODIFYING THIS TO ONLY ACCOMODATE THE SIGNUP OR LOGIN PAGE
 //THIS WILL HAVE TO BE MOVED TO A NEW PAGE AFTER THE USER IS LOGGED IN
-  // useEffect(() => {
-  //   fetch("https://new-json-server.onrender.com/songs")
-  //   //fetch("http://localhost:3000/songs")
-  //     .then((r) => r.json())
-  //     .then((songs) => setSongs(songs));
-  // }, []);
+  useEffect(() => {
+    fetch("https://new-json-server.onrender.com/songs")
+    //fetch("http://localhost:3000/songs")
+      .then((r) => r.json())
+      .then((songs) => setSongs(songs));
+  }, []);
 
-  // if (!songs) return <h2>Loading...</h2>;
+  if (!songs) return <h2>Loading...</h2>;
 
   return (
     <>
