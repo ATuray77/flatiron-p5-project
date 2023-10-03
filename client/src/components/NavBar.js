@@ -28,6 +28,9 @@ function NavBar() {
       <NavLink to="/form" exact style={linkStyles} activeStyle={{ background: "DarkOliveGreen" }}>
         Form
       </NavLink>
+      <NavLink to="/userHome" exact style={linkStyles} activeStyle={{ background: "DarkOliveGreen" }}>
+        UserHome
+      </NavLink>
     </div>
   );
 }
