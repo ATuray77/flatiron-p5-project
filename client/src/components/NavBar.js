@@ -34,7 +34,7 @@ function NavBar({ user, setUser }) {
         {user ? (
           <>
           <button onClick={handleLogoutClick}>Logout</button>
-          <NavLink to="/songs" exact style={linkStyles} activeStyle={{ background: "DarkOliveGreen" }}>
+        <NavLink to="/songs" exact style={linkStyles} activeStyle={{ background: "DarkOliveGreen" }}>
           Songs
         </NavLink>
 

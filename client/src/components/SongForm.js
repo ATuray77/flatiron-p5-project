@@ -10,7 +10,7 @@ function SongForm({ onFormSubmitted }) {
     const formData = Object.fromEntries(new FormData(e.target));
     console.log(formData);
 
-    fetch("http://localhost:3000/songs", {
+    fetch("/songs", {
       method: "POST",
       headers: {
         accept: "application/json",
