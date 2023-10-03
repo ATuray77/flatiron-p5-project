@@ -25,24 +25,39 @@ class ClearSession(Resource):
 
 
 class Signup(Resource):
-
     def post(self):
+        data = request.get_json()
+
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+        email = data.get('email')
+        username = data.get('username')
+        password = data.get('password')
         
-        username = request.get_json()['username']
-        password = request.get_json()['password']
 
-        if username and password:
-            
-            new_user = User(username=username)
-            new_user.password_hash = password
-            db.session.add(new_user)
-            db.session.commit()
+        if not username or not password:
+            return ({'message': 'Missing username or password'}), 422
 
-            session['user_id'] = new_user.id
-            
-            return new_user.to_dict(), 201
+        existing_user = User.query.filter(User.username==username).first()
+        if existing_user:
+            return ({'message': 'User already exists'}), 422
 
-        return {'error': '422 Unprocessable Entity'}, 422
+        user = User(
+            first_name=first_name,
+            last_name=last_name,
+            username=username,
+            email=email,
+           
+        )
+        user.password_hash = password
+
+        db.session.add(user)
+        db.session.commit()
+
+        session['user_id'] = user.id
+
+        return user.to_dict(), 201
+
 
 
 class CheckSession(Resource):
@@ -133,7 +148,7 @@ def songs():
 
 
 # CREATING USER CLASS THIS MAY BE MOVED LATER
-class User(Resource):
+class Users(Resource):
     def post(self):
         data = request.get_json()
         user = User(
@@ -144,9 +159,13 @@ class User(Resource):
         )
         db.session.add(user)  # adding new user to db
         db.session.commit()
+
+        session["user_id"] = user.id  # create session
+
+        return user.to_dict(), 201
 # END OF CREATING USER CLASS THIS MAY BE MOVED LATER
 
-
+api.add_resource(Users, '/signup')
 api.add_resource(ClearSession, '/clear', endpoint='clear')
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Signup, '/signup', endpoint='signup')
