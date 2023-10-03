@@ -3,7 +3,7 @@
 # Standard library imports
 from sqlalchemy.exc import IntegrityError
 # Remote library imports
-from flask import request, session
+from flask import request, session, make_response, jsonify
 from flask_restful import Resource
 
 # Local imports
@@ -115,6 +115,22 @@ class SongsIndex(Resource):
 @app.route('/')
 def index():
     return '<h1>Project Server</h1>'
+
+@app.route('/songs', methods=['GET'])
+def songs():
+    if request.method == 'GET':
+        songs = Song.query.all()
+
+        return make_response(
+            jsonify([movie.to_dict() for movie in songs]),
+            200,
+        )
+
+    return make_response(
+        jsonify({"text": "Method Not Allowed"}),
+        405,
+    ) 
+
 
 
 api.add_resource(ClearSession, '/clear', endpoint='clear')
