@@ -13,6 +13,17 @@ from models import Artist, Song, User
 
 
 # Views go here!
+
+class ClearSession(Resource):
+
+    def delete(self):
+    
+        session['page_views'] = None
+        session['user_id'] = None
+
+        return {}, 204
+
+
 class Signup(Resource):
 
     def post(self):
@@ -53,7 +64,7 @@ def index():
     return '<h1>Project Server</h1>'
 
 
-
+api.add_resource(ClearSession, '/clear', endpoint='clear')
 api.add_resource(CheckSession, '/check_session', endpoint='check_session')
 api.add_resource(Signup, '/signup', endpoint='signup')
 
