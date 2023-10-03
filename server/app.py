@@ -141,8 +141,9 @@ class User(Resource):
             last_name=data["last_name"],
             email=data["email"],
             username=data["username"]
-
         )
+        db.session.add(user)  # adding new user to db
+        db.session.commit()
 # END OF CREATING USER CLASS THIS MAY BE MOVED LATER
 
 
