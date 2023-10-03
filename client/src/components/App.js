@@ -50,9 +50,15 @@ function App() {
         <Route path="/form">
           <SongForm onFormSubmitted={handleOnFormSubmitted} />
         </Route>
+        
         <Route path="/signup">
           <SignUp  />
         </Route>
+
+        <Route path="/login">
+          <Login  />
+        </Route>
+
         <Route exact path="/">
           <Home songs={songs} id={songs.id} onDeleteSong={handleDeleteSong} />
         </Route>
