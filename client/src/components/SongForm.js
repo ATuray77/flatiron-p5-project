@@ -10,7 +10,7 @@ function SongForm({ onFormSubmitted }) {
     const formData = Object.fromEntries(new FormData(e.target));
     console.log(formData);
 
-    fetch("/songs", {
+    fetch("https://new-json-server.onrender.com/songs", {
       method: "POST",
       headers: {
         accept: "application/json",

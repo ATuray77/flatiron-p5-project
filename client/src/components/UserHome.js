@@ -10,7 +10,7 @@ const UserHome = ({ id, onDeleteSong }) => {
 
   useEffect(() => {
     const testDeployedApt = async () => {
-      let apiResults = await fetch("/songs")
+      let apiResults = await fetch("https://new-json-server.onrender.com/songs")
         .then((r) => r.json())
         .then((data) => data);
       //console.table(apiResults)
@@ -21,8 +21,8 @@ const UserHome = ({ id, onDeleteSong }) => {
 
   //handles delete
   function handleDelete() {
-    
-    fetch(`/songs${id}`, {
+    //fetch(`${process.env.REACT_APP_API_URL}/songs${id}`,{
+    fetch(`https://new-json-server.onrender.com/songs${id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())

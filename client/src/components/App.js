@@ -56,8 +56,8 @@ import React, { useEffect, useState } from "react";
     <div>
       {user ? (
       <Switch>
-        <Route path="/">
-          <UserHome user={user}/>
+        <Route path="/songs">
+          {/* <UserHome user={user}/> */}
           <SongsPage songs={songs} setSongs={setSongs} />
         </Route>
         <Route path="/form">

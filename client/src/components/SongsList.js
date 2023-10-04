@@ -11,7 +11,7 @@ function SongsList({ songs, setSongs }) {
   const onFormSubmission = (e) => {
     e.preventDefault();
 
-    setSongs(songs.filter((song) => song.Title.toLowerCase().includes(searchTerm)));
+    setSongs(songs.filter((song) => song.title.toLowerCase().includes(searchTerm)));
     // const filteredSongs = songs.filter(song =>
     //   song.Title.toLowerCase().includes(searchTerm))
   };
