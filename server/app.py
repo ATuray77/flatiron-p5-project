@@ -137,7 +137,7 @@ def songs():
         songs = Song.query.all()
 
         return make_response(
-            jsonify([movie.to_dict() for movie in songs]),
+            jsonify([songs.to_dict() for song in songs]),
             200,
         )
 
